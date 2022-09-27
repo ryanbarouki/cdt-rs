@@ -38,7 +38,11 @@ impl<T: std::fmt::Debug> Tree<T> {
         NodeId { index: next_index }
     }
 
-    pub fn print(&self, current: &NodeId, mut indent: String, last: bool) {
+    pub fn print(&self) {
+        self.print_recurse(&self.root, String::from(""), true);
+    }
+
+    fn print_recurse(&self, current: &NodeId, mut indent: String, last: bool) {
         let current_node = &self.nodes[current.index];
         print!("{indent}");
 
@@ -49,22 +53,10 @@ impl<T: std::fmt::Debug> Tree<T> {
             print!(" ├─");
             indent += " │";
         }
-        println!("{:?}", current_node.value);
+        println!("{:?}", current_node.value.as_ref().unwrap());
 
         for (pos, child) in current_node.children.iter().enumerate() {
-            self.print(child, String::from(indent.as_str()), pos == current_node.children.len() - 1);
+            self.print_recurse(child, String::from(indent.as_str()), pos == current_node.children.len() - 1);
         }
-    }
-}
-
-impl<T> Node<T> {
-    pub fn new(value: Option<T>) -> Self {
-        Node::<T> {
-            value: value, children: vec![]
-        }
-    }
-
-    pub fn add_child(&mut self, child: NodeId) {
-        self.children.push(child);
     }
 }
