@@ -7,3 +7,6 @@ edition = "2021"
 
 [dependencies]
 slab_tree = "0.3.2"
+rand = "0.8"
+queues = "1.0.2"
+random_choice = "*"

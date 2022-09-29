@@ -1,18 +1,7 @@
 mod tree;
-use std::vec::Vec;
+mod tree_generator;
 
 fn main() {
-    let mut tree = tree::Tree::new(0);
-    let new_node = tree.new_node(1, tree.root);
-    tree.new_node(3, new_node);
-    tree.new_node(3, new_node);
-    tree.new_node(3, new_node);
-    tree.new_node(3, new_node);
-    tree.new_node(3, tree.root);
-    tree.new_node(3, tree.root);
-    tree.new_node(3, tree.root);
-    tree.new_node(3, tree.root);
-
+    let mut tree = tree_generator::TreeGenerator::generate_tree(100000, 2.0);
     tree.print();
-
 }

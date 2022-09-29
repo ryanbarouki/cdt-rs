@@ -2,7 +2,7 @@ use std::vec::Vec;
 
 #[derive(Copy, Clone)]
 pub struct NodeId {
-    index: usize
+    pub index: usize
 }
 
 pub struct Node<T> {
